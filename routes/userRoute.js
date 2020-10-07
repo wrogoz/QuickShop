@@ -69,8 +69,10 @@ router.delete("/delete", auth, async (req, res) => {
 });
 
 router.patch("/addProduct", auth, async (req, res) => {
+
   try {
-    const user = await User.findById(req.body.id);
+    const user = await User.findById(req.body.user.id);
+   
     user.shoppingCart.push({
       name: req.body.name,
       amount: req.body.amount,
@@ -79,14 +81,18 @@ router.patch("/addProduct", auth, async (req, res) => {
     await user.save();
     res.send(user);
   } catch (error) {
-    res.send(error.message);
+    res.send(`addError:${error.message}`);
   }
 });
 
 router.patch("/removeProduct", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.body.id);
-  // add filter method here
+    const user = await User.findById(req.body.user.id);
+  
+  user.shoppingCart=user.shoppingCart.filter((el)=>{
+    console.log(el.name)
+    return el.name!==req.body.name
+  })
     await user.save();
     res.send(user);
   } catch (error) {
@@ -94,6 +100,6 @@ router.patch("/removeProduct", auth, async (req, res) => {
   }
 });
 
-//delete product PATH
+
 
 module.exports = router;
