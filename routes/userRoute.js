@@ -90,7 +90,7 @@ router.patch("/removeProduct", auth, async (req, res) => {
     const user = await User.findById(req.body.user.id);
   
   user.shoppingCart=user.shoppingCart.filter((el)=>{
-    console.log(el.name)
+  
     return el.name!==req.body.name
   })
     await user.save();

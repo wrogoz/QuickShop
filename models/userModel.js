@@ -6,14 +6,16 @@ const keys = require('../config/keys/keys')
 
 const productSchema = new Schema({
   name: {
-    type: String,
+    type: String ,
     required: true,
   },
   amount: {
-    type: String,
+    type: String || null,
+    default:null
   },
   weight: {
-    type: String,
+    type: String || null,
+    default:null
   },
   category:{
     type:String,
