@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
+const jwt = require('jsonwebtoken')
+const keys = require('../config/keys/keys')
+
 
 const productSchema = new Schema({
   name: {
@@ -12,6 +15,10 @@ const productSchema = new Schema({
   weight: {
     type: String,
   },
+  category:{
+    type:String,
+    required:true
+  }
 });
 
 const userSchema = new Schema({
@@ -40,6 +47,14 @@ const userSchema = new Schema({
       
   }
 });
+userSchema.methods.createToken = function(){
+  const token = jwt.sign({
+    id:this.id,
+    name:this.name,
+    email:this.email
+  },keys.JwtSecret)
+  return token
+}
 
 const User = mongoose.model("user", userSchema);
 

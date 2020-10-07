@@ -9,10 +9,6 @@ const port = 3000;
 
 
 
-app.get('/', (req, res) => {
-    res.send('main')
-});
-
 app.use('/user',user);
 
 app.listen(3000, () => {
