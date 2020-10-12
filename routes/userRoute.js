@@ -9,7 +9,7 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.body.user.id);
     res.send(user);
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send({error:"no user found"});
   }
 });
 
@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {

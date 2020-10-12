@@ -14,7 +14,7 @@ const auth = async(req,res,next)=>{
         }
         
     } catch (error) {
-        res.status(500).send(`auth error: ${error.message}`)
+        res.status(500).send({error:"user is not logged in"})
     }
 
 }
