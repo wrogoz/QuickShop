@@ -1,24 +1,21 @@
-const express = require('express');
-const app=express();
-const db = require('./db/db');
-const user = require('./routes/userRoute');
-app.use( (req, res, next)=> {
- 
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,PATCH,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Credentials', true);
- 
-    next();
-});
+const express = require('express')
+const app=express()
+const db = require('./db/db')
+const helmet = require("helmet")
+const setHeaders = require('./middleware/setHeaders')
+const user = require('./routes/userRoute')
+
+app.use(helmet())
+app.use( setHeaders)
 app.use(express.json())
+app.use('/user',user)
 
 const port = 8000;
 
 
 
-app.use('/user',user);
+
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}!`);
+    console.log(`App listening on port ${port}!`)
 });

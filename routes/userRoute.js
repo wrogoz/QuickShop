@@ -16,7 +16,11 @@ router.get("/me", auth, async (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     if (await User.findOne({ email: req.body.email })) {
-      res.status(409).send("email already exist");
+      res.status(409).send(
+        {
+          message:"email already exist"
+         
+        });
     } else {
       const user = new User(req.body);
       const hashedPassword = await bcrypt.hash(user.password, 8);
@@ -72,7 +76,7 @@ router.patch("/addProduct", auth, async (req, res) => {
 
   try {
     const user = await User.findById(req.body.user.id);
-   
+  
     user.shoppingCart.push({
       name: req.body.name,
       amount: req.body.amount,
