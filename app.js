@@ -14,7 +14,7 @@ app.get('/',(req,res)=>{
   })
 app.use('/user',user)
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT ;
 
 
 
