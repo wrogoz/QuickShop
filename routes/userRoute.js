@@ -11,9 +11,7 @@ const {
   deleteUser,
   removeProduct,
 } = require("../controllers/userControllers");
-router.get('/',(req,res)=>{
-  res.send('quickshop app documentation')
-})
+
 router.get("/me", auth, getUserData);
 
 router.post("/register", registerUser);

@@ -9,6 +9,9 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json())
 app.use(setHeaders)
+app.get('/',(req,res)=>{
+    res.send('quickshop app documentation')
+  })
 app.use('/user',user)
 
 const port = process.env.PORT || 8000;
