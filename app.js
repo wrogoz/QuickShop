@@ -14,7 +14,7 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.send('quickshop app documentation test')
   })
-app.use('/user',user)
+
 
 const port = process.env.PORT || 8000;
 
