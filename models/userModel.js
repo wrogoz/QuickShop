@@ -54,7 +54,7 @@ userSchema.methods.createToken = function(){
     id:this.id,
     name:this.name,
     email:this.email
-  },keys.JwtSecret)
+  },process.env.JWTSECRET)
   return token
 }
 
