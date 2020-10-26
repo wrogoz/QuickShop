@@ -6,7 +6,11 @@ const helmet = require("helmet")
 const setHeaders = require('./middleware/setHeaders')
 const user = require('./routes/userRoute')
 const cors = require("cors")
-app.use(cors())
+const corsOption={
+  origin:['http://localhost:3000'],
+  credentials:true
+}
+app.use(cors(corsOption))
 app.use(setHeaders)
 app.use(helmet())
 app.use(express.json())
