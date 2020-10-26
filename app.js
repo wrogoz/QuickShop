@@ -7,9 +7,10 @@ const setHeaders = require('./middleware/setHeaders')
 const user = require('./routes/userRoute')
 const cors = require("cors")
 const corsOption={
-  origin:'https://quickshop.netlify.com',
+  origin:'https://quickshop.netlify.app',
   credentials:true,
-  "preflightContinue": true
+  "preflightContinue": true,
+
 }
 app.use(setHeaders)
 app.use(cors(corsOption))
