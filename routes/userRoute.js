@@ -17,7 +17,7 @@ router.get("/me", auth, async (req, res) => {
     res.send(user);
   } catch (error) {
     res.status(500).send({ error: "no user found" });
-  });
+  }});
 
 router.post("/register", registerUser);
 
