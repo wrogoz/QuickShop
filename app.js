@@ -12,7 +12,7 @@ const corsOption={
   "preflightContinue": true
 }
 app.use(setHeaders)
-app.use(cors())
+app.use(cors(corsOption))
 
 app.use(helmet())
 app.use(express.json())
