@@ -16,6 +16,7 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.body.user.id);
     res.send(user);
   } catch (error) {
+    console.log('tu cos padło')
     console.log(error.message)
     console.log(error)
     res.status(500).send({ error: "no user found" });
