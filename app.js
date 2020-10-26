@@ -6,9 +6,14 @@ const helmet = require("helmet")
 const setHeaders = require('./middleware/setHeaders')
 const user = require('./routes/userRoute')
 const cors = require("cors")
-
-app.use(cors())
+const corsOption={
+  origin:'https://quickshop.netlify.com',
+  credentials:true,
+  "preflightContinue": true
+}
 app.use(setHeaders)
+app.use(cors())
+
 app.use(helmet())
 app.use(express.json())
 app.use('/user',user);
