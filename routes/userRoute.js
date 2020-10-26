@@ -11,7 +11,13 @@ const {
   removeProduct,
 } = require("../controllers/userControllers");
 
-router.get("/me", auth, getUserData);
+router.get("/me", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.body.user.id);
+    res.send(user);
+  } catch (error) {
+    res.status(500).send({ error: "no user found" });
+  });
 
 router.post("/register", registerUser);
 
