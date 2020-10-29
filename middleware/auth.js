@@ -8,7 +8,7 @@ const auth = async(req,res,next)=>{
         if(!token){
             res.status(400).send({error:'no token provided'})
         }else{
-            const decodedToken=jwt.verify(token,proces.env.JWTSECRET);
+            const decodedToken=jwt.verify(token,process.env.JWTSECRET);
             req.body.user=decodedToken;
             
             next();
