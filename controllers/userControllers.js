@@ -12,7 +12,7 @@ const getUserData = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    if (await User.findOne({ email: req.body.email })) {
+    if (await User.findOne({ id: req.body.id })) {
       res.status(409).send({
         message: "email already exist",
       });
@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const user = await User.findOne({ id: req.body.id });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       res.status(400).send("wrong email or password");
     } else {
