@@ -12,7 +12,7 @@ const getUserData = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    if (await User.findOne({ id: req.body.id })) {
+    if (await User.findOne({ email: req.body.email })) {
       res.status(409).send({
         message: "email already exist",
       });

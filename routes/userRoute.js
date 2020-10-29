@@ -13,7 +13,7 @@ const {
 
 router.get("/me", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.body.user.id);
+    const user = await User.findOne({ email: req.body.email });
     res.send(user);
   } catch (error) {
     
