@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ id: req.body.id });
     if (!user) {
       res.status(400).send("wrong email or password");
     } else {
