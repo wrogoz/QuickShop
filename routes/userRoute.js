@@ -24,7 +24,28 @@ router.get("/me", auth, async (req, res) => {
 
 router.post("/register", registerUser);
 
-router.post("/login", loginUser);
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(400).send("wrong email or password");
+    } else {
+      const isPasswordValid = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (isPasswordValid) {
+        const token = user.createToken();
+
+        res.send({ token });
+      } else {
+        res.send("wrong email or password");
+      }
+    }
+  } catch (error) {
+    res.send(error.message);
+  }
+});
 
 router.delete("/delete", auth, deleteUser);
 
