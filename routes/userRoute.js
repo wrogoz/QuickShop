@@ -10,7 +10,7 @@ const {
   deleteUser,
   removeProduct,
 } = require("../controllers/userControllers");
-
+const bcrypt = require('bcrypt')
 router.get("/me", auth, async (req, res) => {
   try {
     const user = await User.findById(req.body.user.id);
