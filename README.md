@@ -1,4 +1,4 @@
-# QUICKSHOP MERN app.
+# QUICKSHOP shopping list MERN app.
  
 # Page:
     https://quickshop.netlify.app
